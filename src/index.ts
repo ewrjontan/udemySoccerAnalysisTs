@@ -1,4 +1,5 @@
 import { CsvFileReader } from "./CsvFileReader";
+import { MatchResult } from "./MatchResult";
 
 const reader = new CsvFileReader('football.csv');
 
@@ -6,12 +7,6 @@ reader.read();
 
 console.log(reader.data);
 
-//enum - enumeration; object storing closely related values. Mostly used to signal other developers onto what it is.
-enum MatchResult {
-    HomeWin = 'H',
-    AwayWin = 'A',
-    Draw = 'D'
-};
 
 let manUnitedWins = 0;
 
