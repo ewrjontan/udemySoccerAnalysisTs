@@ -2,10 +2,11 @@ import { OutputTarget } from "../Summary";
 import fs from 'fs';
 
 export class HtmlReport implements OutputTarget {
-    print(report:string): void {
+    print(report:string, inputFilename: string): void {
         const html = `
             <div>
                 <h1>Analysis Output</h1>
+                <div>Input: ${inputFilename}</div>
                 <div>${report}</div>
             </div>
         `;

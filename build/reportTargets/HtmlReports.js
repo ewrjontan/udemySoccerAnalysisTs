@@ -6,10 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.HtmlReport = void 0;
 const fs_1 = __importDefault(require("fs"));
 class HtmlReport {
-    print(report) {
+    print(report, inputFilename) {
         const html = `
             <div>
                 <h1>Analysis Output</h1>
+                <div>Input: ${inputFilename}</div>
                 <div>${report}</div>
             </div>
         `;
