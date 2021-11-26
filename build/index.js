@@ -1,17 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const MatchReader_1 = require("./MatchReader");
-const CsvFileReader_1 = require("./CsvFileReader");
-const HtmlReports_1 = require("./reportTargets/HtmlReports");
-const WinsAnalysis_1 = require("./analyzers/WinsAnalysis");
 const Summary_1 = require("./Summary");
 //Create an object that satisfies the 'DataReader' interface
-const csvFileReader = new CsvFileReader_1.CsvFileReader('football.csv');
+//const csvFileReader = new CsvFileReader('football.csv');
 //Create an instance of MatchReader and pass in something satisfying the 
 //'DataReader' interface
-const matchReader = new MatchReader_1.MatchReader(csvFileReader);
+//const matchReader = new MatchReader(csvFileReader);
+//for use with static method
+const matchReader = MatchReader_1.MatchReader.fromCsv('football.csv');
 matchReader.load();
-const summary = new Summary_1.Summary(new WinsAnalysis_1.WinsAnalysis('Man United'), 
-//new ConsoleReport()
-new HtmlReports_1.HtmlReport());
+/*const summary = new Summary(
+    new WinsAnalysis('Man United'),
+    //new ConsoleReport()
+    new HtmlReport()
+);*/
+//using static method
+const summary = Summary_1.Summary.winsAnalysisWithHtmlReport('Man United');
 summary.buildAndPrintReport(matchReader.matches);

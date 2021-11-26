@@ -7,18 +7,27 @@ import { Summary } from "./Summary";
 
 
 //Create an object that satisfies the 'DataReader' interface
-const csvFileReader = new CsvFileReader('football.csv');
+//const csvFileReader = new CsvFileReader('football.csv');
 
 
 //Create an instance of MatchReader and pass in something satisfying the 
 //'DataReader' interface
-const matchReader = new MatchReader(csvFileReader);
+//const matchReader = new MatchReader(csvFileReader);
+
+
+//for use with static method
+const matchReader = MatchReader.fromCsv('football.csv');
+
+
 matchReader.load();
 
-const summary = new Summary(
+/*const summary = new Summary(
     new WinsAnalysis('Man United'),
     //new ConsoleReport()
     new HtmlReport()
-);
+);*/
+
+//using static method
+const summary = Summary.winsAnalysisWithHtmlReport('Man United');
 
 summary.buildAndPrintReport(matchReader.matches);
