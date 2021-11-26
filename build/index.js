@@ -5,13 +5,14 @@ const CsvFileReader_1 = require("./CsvFileReader");
 const HtmlReports_1 = require("./reportTargets/HtmlReports");
 const WinsAnalysis_1 = require("./analyzers/WinsAnalysis");
 const Summary_1 = require("./Summary");
+const inputFilename = 'football.csv';
 //Create an object that satisfies the 'DataReader' interface
-const csvFileReader = new CsvFileReader_1.CsvFileReader('football.csv');
+const csvFileReader = new CsvFileReader_1.CsvFileReader(inputFilename);
 //Create an instance of MatchReader and pass in something satisfying the 
 //'DataReader' interface
 const matchReader = new MatchReader_1.MatchReader(csvFileReader);
 matchReader.load();
 const summary = new Summary_1.Summary(new WinsAnalysis_1.WinsAnalysis('Man United'), 
-//new ConsoleReport()
-new HtmlReports_1.HtmlReport());
+//new ConsoleReport(),
+new HtmlReports_1.HtmlReport(), inputFilename);
 summary.buildAndPrintReport(matchReader.matches);

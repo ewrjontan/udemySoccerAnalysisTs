@@ -6,8 +6,10 @@ import { WinsAnalysis } from "./analyzers/WinsAnalysis";
 import { Summary } from "./Summary";
 
 
+const inputFilename = 'football.csv';
+
 //Create an object that satisfies the 'DataReader' interface
-const csvFileReader = new CsvFileReader('football.csv');
+const csvFileReader = new CsvFileReader(inputFilename);
 
 
 //Create an instance of MatchReader and pass in something satisfying the 
@@ -17,8 +19,9 @@ matchReader.load();
 
 const summary = new Summary(
     new WinsAnalysis('Man United'),
-    //new ConsoleReport()
-    new HtmlReport()
+    //new ConsoleReport(),
+    new HtmlReport(),
+    inputFilename
 );
 
 summary.buildAndPrintReport(matchReader.matches);

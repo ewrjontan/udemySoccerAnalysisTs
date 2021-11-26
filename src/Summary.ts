@@ -5,15 +5,21 @@ export interface Analyzer {
 }
 
 export interface OutputTarget {
-    print(report: string): void;
+    print(report: string, inputFilename: string): void;
 }
 
+
+
 export class Summary {
-    constructor(public analyzer: Analyzer, public outputTarget: OutputTarget) {}
+    constructor(
+        public analyzer: Analyzer, 
+        public outputTarget: OutputTarget,
+        public filename: string
+        ) {}
 
     buildAndPrintReport(matches: MatchData[]): void {
         const output = this.analyzer.run(matches);
-        this.outputTarget.print(output);
+        this.outputTarget.print(output, this.filename);
     }
     
 } 
